@@ -1,0 +1,31 @@
+{
+  "name": "str-hgk-sajat-munka",
+  "version": "1.0.0",
+  "description": "Struktúraváltás Haladó Gyártóspecifikus Képzés - FullStack API - Saját munka",
+  "main": "utils.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beviksoft/str-hgk-sajat-munka.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beviksoft/str-hgk-sajat-munka/issues"
+  },
+  "homepage": "https://github.com/beviksoft/str-hgk-sajat-munka#readme",
+  "devDependencies": {
+    "@types/node": "^15.12.5",
+    "eslint": "^7.29.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "fs-extra": "^10.0.0"
+  }
+}
