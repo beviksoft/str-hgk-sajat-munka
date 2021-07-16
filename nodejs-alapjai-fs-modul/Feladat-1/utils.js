@@ -1,16 +1,15 @@
-const { mkdir, writeFile } = require('fs').promises;
+const { mkdir, writeFile } = require('fs').promises
 
 const createFolders = async (folders) => {
-  await folders.map( folder => mkdir(folder) );
+  await folders.map(folder => mkdir(folder))
 }
 
 const createFiles = async (files) => {
-  await files.map( file => writeFile(file, '') );
+  await files.map(file => writeFile(file, ''))
 }
-
 
 // Export
 module.exports = {
-  createFolders, 
+  createFolders,
   createFiles
-};
+}

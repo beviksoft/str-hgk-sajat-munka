@@ -1,49 +1,47 @@
-// copy-paste , de csak az ötletszerzés miatt. Még átírom...
+const { mkdir, writeFile, unlink } = require('fs').promises
+const { createReadStream, createWriteStream } = require('fs')
+const { join } = require('path')
+const { createGzip } = require('zlib')
 
-
-const { mkdir, writeFile, unlink } = require('fs').promises;
-const { createReadStream, createWriteStream } = require('fs');
-const { join } = require('path');
-const { createGzip } = require('zlib');
+const sourceFile = 'testfile.txt'
 
 // 1. forrás fájl beolvasása
-const sourcePath = join(__dirname, '__testfile copy.txt');
+const sourcePath = join(__dirname, `${sourceFile}`)
 const readData = createReadStream(
-    sourcePath, 
+    sourcePath,
     { encoding: 'utf-8' }
-);
+)
 
 // 2. forrás fájl tartalmának írása a cél fájlba
-const targetPath = join(__dirname, '__testfile copy.txt.bak');
+const targetPath = join(__dirname, `${sourceFile}.bak`)
 const writeBak = createWriteStream(
     targetPath,
     { encoding: 'utf-8' }
-);
+)
 
 // 3. Cél fájl tartalámnak olvasása és tömörítése
 const readTarget = createReadStream(
     targetPath,
     { encoding: 'utf-8' }
-);
+)
 
 // 4. A zippelt tartalom fájlba írása
 const writeZip = createWriteStream(
-    join(__dirname, '__testfile copy.txt.bak.gz'), 
+    join(__dirname, `${sourceFile}.bak.gz`),
     { encoding: 'utf-8' }
 )
 
-
 // forrás beolvasása -> célfájl írása -> célfájl betömörítése
-readData.pipe(writeBak);
+readData.pipe(writeBak)
 
 writeBak.on('finish', () => {
     readTarget
         .pipe(createGzip())
-        .pipe(writeZip);
-});
+        .pipe(writeZip)
+})
 
 // forrás és cél fájlok törlése
 writeZip.on('finish', () => {
-    unlink(sourcePath);
-    unlink(targetPath);
+    unlink(sourcePath)
+    unlink(targetPath)
 })
