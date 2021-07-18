@@ -3,7 +3,7 @@ const { createReadStream, createWriteStream } = require('fs')
 const { join } = require('path')
 const { createGzip } = require('zlib')
 
-const sourceFile = 'testfile.txt'
+const sourceFile = '_testfile_.txt'
 
 // 1. forrás fájl beolvasása
 const sourcePath = join(__dirname, `${sourceFile}`)
