@@ -1,0 +1,8 @@
+use videoStore
+
+db.createCollection("directors")
+
+db.directors.insertOne({_id: 1, name: "Steven Spielberg", birthYear: 1946, movies: []})
+db.directors.insertOne({_id: 2, name: "Clint Eastwood", birthYear: 1930, movies: []})
+db.directors.insertOne({_id: 3, name: "James Cameron", birthYear: 1954, movies: []})
+
