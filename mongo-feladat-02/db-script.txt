@@ -37,3 +37,11 @@ db.directors.updateOne(
 
 db.directors.find().pretty()
 
+db.movies.updateMany({}, {$unset: {director: ""}})
+
+db.movies.find({ releaseYear: { $gt: 2000 } })
+db.movies.find({ releaseYear:{ $lte: 2000 } })
+
+db.movies.find({ $and: [ {releaseYear: {$gt: 1990}}, {releaseYear: {$lte: 2000}} ] })
+
+db.movies.find({ category: { $ne: "FANTASY" } })
