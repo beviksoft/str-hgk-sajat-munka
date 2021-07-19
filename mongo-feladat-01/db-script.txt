@@ -16,13 +16,33 @@ db.movies.insertMany( [
 ] )
 
 db.movies.updateMany({}, {$set: {ratings: []}})
+db.runCommand({
+	collMod: "movies",
+	validator: {
+		$jsonSchema: {
+			bsonType: "object",
+			properties: {
+				ratings: {
+					bsonType: "array",
+					items: {
+						bsonType: "int",
+						minimum: 1,
+						maximum: 5,
+						description:
+							"'quantity' must be a short integer in [1, 5)"
+					}
+				},
+			}
+		}
+	}
+})
 
-db.movies.updateOne({title: "Jurassic Park"}, {$push: {ratings: 5} })
-db.movies.updateOne({title: "Jurassic Park"}, {$push: {ratings: 4} })
-db.movies.updateOne({title: "Avatar"}, {$push: {ratings: 5} })
-db.movies.updateOne({title: "Avatar"}, {$push: {ratings: 4} })
-db.movies.updateOne({title: "Titanic"}, {$push: {ratings: 4} })
-db.movies.updateOne({title: "Titanic"}, {$push: {ratings: 3} })
+db.movies.updateOne({title: "Jurassic Park"}, {$push: {ratings: NumberInt(5)} })
+db.movies.updateOne({title: "Jurassic Park"}, {$push: {ratings: NumberInt(4)} })
+db.movies.updateOne({title: "Avatar"}, {$push: {ratings: NumberInt(5)} })
+db.movies.updateOne({title: "Avatar"}, {$push: {ratings: NumberInt(4)} })
+db.movies.updateOne({title: "Titanic"}, {$push: {ratings: NumberInt(4)} })
+db.movies.updateOne({title: "Titanic"}, {$push: {ratings: NumberInt(3)} })
 
 db.movies.updateMany({}, {$set: { releaseYear: 2000 }})
 
