@@ -44,4 +44,6 @@ db.movies.find({ releaseYear:{ $lte: 2000 } })
 
 db.movies.find({ $and: [ {releaseYear: {$gt: 1990}}, {releaseYear: {$lte: 2000}} ] })
 
+db.movies.find({ $and: [ {releaseYear: {$gt: 1990}}, {releaseYear: {$lte: 2000}}, {category: {$eq: "ACTION"}} ] })
+
 db.movies.find({ category: { $ne: "FANTASY" } })
