@@ -1,0 +1,17 @@
+use videoStore
+
+db.movies.find({$or: [{ category: "ACTION" }, { category: "ROMANTIC" }]}).count() db.movies.find({category: { $in: ["ACTION" , "ROMANTIC" ]}}).count()
+
+const fantaFilms = db.movies.find({category: "FANTASY"}, {"_id":0, "title":1, "category":1})
+
+const getFormattedMovieString = ({title, category}) => { return ${title}: ${category} } fantaFilms.forEach(f => print(getFormattedMovieString(f)))
+
+db.movies.find({}, {"_id":0, "title":1}).sort({"_id":-1})
+
+db.movies.find({}, {"_id": 0, "title": 1, "category": 1, "releaseYear":1}).sort({"category":1, "releaseYear":-1})
+
+db.movies.find({"category": "ACTION"}).sort({"releaseYear":-1}).limit(1)
+
+db.movies.find({}, {"_id":0, "title":1, "releaseYear":1}).sort({"releaseYear":1}).limit(2)
+
+db.movies.find({"category": "ROMANTIC"}, {"_id":0, "title":1, "releaseYear":1}).sort({"releaseYear":-1}).limit(1).skip(1)

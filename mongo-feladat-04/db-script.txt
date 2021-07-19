@@ -1,0 +1,3 @@
+use videoStore
+
+db.createCollection("cinemas", { validator: { $jsonSchema: { required: [ "_id", "name", "movies", "address" ], properties: { _id: { bsonType: "int" }, name: { bsonType: "string" }, movies: { bsonType: "array" }, address: { bsonType: "object", properties: { city: { bsonType: "string" } } } } } } } )
