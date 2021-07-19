@@ -6,3 +6,34 @@ db.directors.insertOne({_id: 1, name: "Steven Spielberg", birthYear: 1946, movie
 db.directors.insertOne({_id: 2, name: "Clint Eastwood", birthYear: 1930, movies: []})
 db.directors.insertOne({_id: 3, name: "James Cameron", birthYear: 1954, movies: []})
 
+db.directors.find()
+db.movies.find({}, {director:1, _id:1}).sort({director: 1})
+
+db.directors.updateOne(
+    {_id: 1},
+    {$set: {movies: [
+        ObjectId("60f4bf642ed3e21fdf42a453"),
+        ObjectId("60f4bf642ed3e21fdf42a454"),
+        ObjectId("60f4bf642ed3e21fdf42a455"),
+        ObjectId("60f4bf642ed3e21fdf42a456")
+    ]}}
+)
+db.directors.updateOne(
+    {_id: 2},
+    {$set: {movies: [
+        ObjectId("60f4bf642ed3e21fdf42a457"),
+        ObjectId("60f4bf642ed3e21fdf42a458"),
+        ObjectId("60f4bf642ed3e21fdf42a459")
+    ]}}
+)
+db.directors.updateOne(
+    {_id: 3},
+    {$set: {movies: [
+        ObjectId("60f4bf642ed3e21fdf42a45a"),
+        ObjectId("60f4bf642ed3e21fdf42a45b"),
+        ObjectId("60f4bf642ed3e21fdf42a45c")
+    ]}}
+)
+
+db.directors.find().pretty()
+
