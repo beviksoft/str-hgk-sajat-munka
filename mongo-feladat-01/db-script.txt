@@ -1,0 +1,29 @@
+use videoStore
+
+db.createCollection("movies")
+
+db.movies.insertMany( [ 
+    { title: "Schindlers List", category: "romantic", director: "Steven Spielberg"}, 
+    { title: "A.I. Artificial Intelligence", category: "fantasy", director: "Steven Spielberg"}, 
+    { title: "Indiana Jones and the Temple of Doom", category: "action", director: "Steven Spielberg"}, 
+    { title: "Jurassic Park", category: "fantasy", director: "Steven Spielberg"}, 
+    { title: "Firefox", category: "action", director: "Clint Eastwood"}, 
+    { title: "Million Dollar Baby", category: "romantic", director: "Clint Eastwood"}, 
+    { title: "Gran Torino", category: "romantic", director: "Clint Eastwood"}, 
+    { title: "Avatar", category: "fantasy", director: "James Cameron"}, 
+    { title: "The Terminator", category: "action", director: "James Cameron"}, 
+    { title: "Titanic", category: "romantic", director: "James Cameron"}
+] )
+
+db.movies.updateMany({}, {$set: {ratings: []}})
+
+db.movies.updateOne({title: "Jurassic Park"}, {$push: {ratings: 5} })
+db.movies.updateOne({title: "Jurassic Park"}, {$push: {ratings: 4} })
+db.movies.updateOne({title: "Avatar"}, {$push: {ratings: 5} })
+db.movies.updateOne({title: "Avatar"}, {$push: {ratings: 4} })
+db.movies.updateOne({title: "Titanic"}, {$push: {ratings: 4} })
+db.movies.updateOne({title: "Titanic"}, {$push: {ratings: 3} })
+
+db.movies.updateMany({}, {$set: { releaseYear: 2000 }})
+
+db.movies.updateMany( {}, [{$set: {category: {$toUpper: "$category"} }}] )
