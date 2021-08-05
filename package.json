@@ -30,6 +30,7 @@
   "dependencies": {
     "bluebird": "^3.7.2",
     "fs-extra": "^10.0.0",
+    "xmlhttprequest": "^1.8.0",
     "yargs": "^17.0.1"
   }
 }
